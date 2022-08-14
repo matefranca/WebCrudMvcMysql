@@ -1,9 +1,15 @@
+using Microsoft.EntityFrameworkCore;
 using WebCrudMvcMysql.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<UserContext>
+    (options => options.UseMySql(
+        "server=localhost;initial catalog=CRUD_MVC_MYSQL;uid=root;pwd=sqlpsswd",
+        Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.30-mysql")));
 
 var app = builder.Build();
 
